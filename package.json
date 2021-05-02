@@ -2,7 +2,7 @@
   "name": "comic-viewer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://vanonselenp.github.io/comic-reader",
+  "homepage": "https://vanonselenp.github.io/comic-reader/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
