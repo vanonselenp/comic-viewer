@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const currentDate = window.location.href.split('/');
     let localDate = currentDate[currentDate.length - 1];
-    if(localDate === "gg") localDate = date;
+    if(localDate === "comic-viewer") localDate = date;
     
     setPath(localDate)
     
