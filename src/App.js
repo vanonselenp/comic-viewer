@@ -7,7 +7,7 @@ const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}
 
 const generateImage = (current, next) => {
   return (
-    <a href={`http://vanonselenp.github.io/comic-reader/gg/${next}`}>
+    <a href={`http://vanonselenp.github.io/comic-viewer/gg/${next}`}>
           <img class="fit-picture"
             src={`http://www.girlgeniusonline.com/ggmain/strips/ggmain${current}.jpg`}
             alt="Grapefruit slice atop a pile of other slices"/>
@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const currentDate = window.location.href.split('/');
     let localDate = currentDate[currentDate.length - 1];
-    if(localDate === "comic-viewer") localDate = date;
+    if(localDate === "gg") localDate = date;
     
     setPath(localDate)
     
