@@ -7,7 +7,7 @@ const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}
 
 const generateImage = (current, next) => {
   return (
-    <a href={`http://localhost:3000/comic-reader/gg/${next}`}>
+    <a href={`http://vanonselenp.github.io/comic-reader/gg/${next}`}>
           <img class="fit-picture"
             src={`http://www.girlgeniusonline.com/ggmain/strips/ggmain${current}.jpg`}
             alt="Grapefruit slice atop a pile of other slices"/>
