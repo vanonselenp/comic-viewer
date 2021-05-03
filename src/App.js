@@ -5,15 +5,14 @@ const date = "20021104";
 const corsProxy = "https://warm-waters-42495.herokuapp.com/";
 const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}`;
 
+// const server = "http://localhost:3000";
 const server = "https://vanonselenp.github.io";
 
-console.log(server);
-
-const generateImage = (current, next) => {
+const generateImage = (next, src) => {
   return (
     <a href={`${server}/comic-viewer?${next}`}>
-          <img class="fit-picture"
-            src={`http://www.girlgeniusonline.com/ggmain/strips/ggmain${current}.jpg`}
+          <img className="fit-picture"
+            src={src}
             alt="Grapefruit slice atop a pile of other slices"/>
     </a>
   );
@@ -22,7 +21,8 @@ const generateImage = (current, next) => {
 function App() {
   // const [image, setImage] = useState("");
   const [next, setNext] = useState("");
-  const [path, setPath] = useState("");
+  // const [path, setPath] = useState("");
+  const [currentImage, setCurrentImage] = useState("");
 
   useEffect(() => {
     let localDate = date;
@@ -31,7 +31,7 @@ function App() {
       localDate = currentDate[currentDate.length - 1];
     }
     
-    setPath(localDate)
+    // setPath(localDate)
     
     const url = `${corsProxy}${ggurl(localDate)}`;
     fetch(url)
@@ -50,15 +50,21 @@ function App() {
 
         const nextComic = first.split("=");
         setNext(nextComic[nextComic.length - 1]);
+
+        const image = Array.from(htmldoc.images)
+          .map(m => m.src)
+          .find(m => m.startsWith("http://www.girlgeniusonline.com/ggmain/strips/ggmain"));
+
+        setCurrentImage(`${image}`);
       });
   }, []);
 
 
-  if (next != "")
+  if (next !== "")
     return (
       <div className="App">
         <header className="App-header">
-          {generateImage(path, next)}
+          {generateImage(next, currentImage)}
         </header>
       </div>
     );
