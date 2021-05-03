@@ -12,7 +12,7 @@ console.log(server);
 
 const generateImage = (current, next) => {
   return (
-    <a href={`${server}/comic-viewer/${next}`}>
+    <a href={`${server}/comic-viewer?${next}`}>
           <img class="fit-picture"
             src={`http://www.girlgeniusonline.com/ggmain/strips/ggmain${current}.jpg`}
             alt="Grapefruit slice atop a pile of other slices"/>
@@ -26,9 +26,11 @@ function App() {
   const [path, setPath] = useState("");
 
   useEffect(() => {
-    const currentDate = window.location.href.split('/');
-    let localDate = currentDate[currentDate.length - 1];
-    if(localDate === "comic-viewer") localDate = date;
+    let localDate = date;
+    if(window.location.href.includes("?")) {
+      const currentDate = window.location.href.split('?');
+      localDate = currentDate[currentDate.length - 1];
+    }
     
     setPath(localDate)
     
@@ -53,14 +55,16 @@ function App() {
   }, []);
 
 
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        {generateImage(path, next)}
-      </header>
-    </div>
-  );
+  if (next != "")
+    return (
+      <div className="App">
+        <header className="App-header">
+          {generateImage(path, next)}
+        </header>
+      </div>
+    );
+  else
+      return (<></>);
 }
 
 export default App;
