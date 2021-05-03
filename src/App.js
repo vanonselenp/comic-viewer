@@ -1,21 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from "react";
 
 const date = "20021104";
 const corsProxy = "https://warm-waters-42495.herokuapp.com/";
-const ggurl = (date: string) => `https://www.girlgeniusonline.com/comic.php?date=${date}`;
+const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}`;
 
-const server = "http://localhost:3000";
-// const server = "https://vanonselenp.github.io";
+const server = "https://vanonselenp.github.io";
 
 console.log(server);
 
-const generateImage = (next: string, src: string) => {
+const generateImage = (current, next) => {
   return (
     <a href={`${server}/comic-viewer?${next}`}>
-          <img className="fit-picture"
-            src={src}
+          <img class="fit-picture"
+            src={`http://www.girlgeniusonline.com/ggmain/strips/ggmain${current}.jpg`}
             alt="Grapefruit slice atop a pile of other slices"/>
     </a>
   );
@@ -25,7 +23,6 @@ function App() {
   // const [image, setImage] = useState("");
   const [next, setNext] = useState("");
   const [path, setPath] = useState("");
-  const [currentImage, setCurrentImage] = useState("");
 
   useEffect(() => {
     let localDate = date;
@@ -43,22 +40,16 @@ function App() {
         const parser = new DOMParser();
         const htmldoc = parser.parseFromString(data, "text/html");
 
-        const links = new Set();
+        const s = new Set();
         Array
           .from(htmldoc.links)
           .filter(m => m.href.startsWith('http://www.girlgeniusonline.com/comic.php?date='))
-          .forEach(m => links.add(m.href));
+          .forEach(m => s.add(m.href));
 
-        const first: string | any = Array.from(links.values())[links.size - 2];
+        const first = Array.from(s.values())[s.size - 2];
 
         const nextComic = first.split("=");
         setNext(nextComic[nextComic.length - 1]);
-
-        const image = Array.from(htmldoc.images)
-        .map(m => m.src)
-        .find(m => m.startsWith("http://www.girlgeniusonline.com/ggmain/strips/ggmain"));
-
-        setCurrentImage(`${image}`);
       });
   }, []);
 
@@ -67,7 +58,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          {generateImage(next, currentImage)}
+          {generateImage(path, next)}
         </header>
       </div>
     );
