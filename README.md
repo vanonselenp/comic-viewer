@@ -15,3 +15,11 @@ The aim here was to be a small app deployed and running completely in browser an
 https://github.com/Rob--W/cors-anywhere
 
 Due to cors issues there is a cors proxy so that it will add cors when calling the fetch of the gg page. 
+
+```
+git clone https://github.com/Rob--W/cors-anywhere.git
+cd cors-anywhere/
+npm install
+heroku create
+git push heroku master
+```
