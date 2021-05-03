@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/comic-viewer/static/css/main.dbcdfc3e.chunk.css",
-    "main.js": "/comic-viewer/static/js/main.eb319245.chunk.js",
-    "main.js.map": "/comic-viewer/static/js/main.eb319245.chunk.js.map",
+    "main.js": "/comic-viewer/static/js/main.4c6b3469.chunk.js",
+    "main.js.map": "/comic-viewer/static/js/main.4c6b3469.chunk.js.map",
     "runtime-main.js": "/comic-viewer/static/js/runtime-main.62b1e4f8.js",
     "runtime-main.js.map": "/comic-viewer/static/js/runtime-main.62b1e4f8.js.map",
     "static/js/2.8f68eee6.chunk.js": "/comic-viewer/static/js/2.8f68eee6.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.62b1e4f8.js",
     "static/js/2.8f68eee6.chunk.js",
     "static/css/main.dbcdfc3e.chunk.css",
-    "static/js/main.eb319245.chunk.js"
+    "static/js/main.4c6b3469.chunk.js"
   ]
 }
