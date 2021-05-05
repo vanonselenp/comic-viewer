@@ -46,7 +46,7 @@ img {
   
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 650) {
   img {
     width: 50%;
   }
