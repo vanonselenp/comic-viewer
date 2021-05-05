@@ -8,12 +8,12 @@ const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}
 // const server = "http://localhost:3000";
 const server = "https://vanonselenp.github.io";
 
-const generateImage = (next, src) => {
+const generateImage = (next, srcs) => {
   return (
     <a href={`${server}/comic-viewer?${next}`}>
-          <img className="fit-picture"
+      {srcs.map(src => (<img className="fit-picture"
             src={src}
-            alt="Grapefruit slice atop a pile of other slices"/>
+            alt="Grapefruit slice atop a pile of other slices"/>))}
     </a>
   );
 }
@@ -22,7 +22,7 @@ function App() {
   // const [image, setImage] = useState("");
   const [next, setNext] = useState("");
   // const [path, setPath] = useState("");
-  const [currentImage, setCurrentImage] = useState("");
+  const [currentImages, setCurrentImages] = useState([]);
 
   useEffect(() => {
     let localDate = date;
@@ -51,11 +51,11 @@ function App() {
         const nextComic = first.split("=");
         setNext(nextComic[nextComic.length - 1]);
 
-        const image = Array.from(htmldoc.images)
+        const images = Array.from(htmldoc.images)
           .map(m => m.src)
-          .find(m => m.startsWith("http://www.girlgeniusonline.com/ggmain/strips/ggmain"));
+          .filter(m => m.startsWith("http://www.girlgeniusonline.com/ggmain/strips/ggmain"));
 
-        setCurrentImage(`${image}`);
+          setCurrentImages(images);
       });
   }, []);
 
@@ -64,7 +64,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          {generateImage(next, currentImage)}
+          {generateImage(next, currentImages)}
         </header>
       </div>
     );
