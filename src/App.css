@@ -42,5 +42,12 @@ a {
 }
 
 img {
-  width: inherit;;
+  width: 100%;
+  
+}
+
+@media (min-width: 1025px) {
+  img {
+    width: 50%;
+  }
 }
