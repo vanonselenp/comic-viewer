@@ -40,3 +40,7 @@
 a {
   width: 100%;
 }
+
+img {
+  width: inherit;;
+}
