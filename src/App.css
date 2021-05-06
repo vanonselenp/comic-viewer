@@ -41,13 +41,17 @@ a {
   width: 100%;
 }
 
-img {
-  width: 100%;
-  
+@media only screen and (orientation: landscape) {
+  body {
+    background-color: lightblue;
+  }
 }
 
-@media (min-width: 650) {
+@media only screen and (orientation: portrait) {
+  body {
+    background-color: grey;
+  }
   img {
-    width: 50%;
+    width: 100%;
   }
 }
