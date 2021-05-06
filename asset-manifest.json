@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/comic-viewer/static/css/main.8e9b866a.chunk.css",
+    "main.css": "/comic-viewer/static/css/main.545d5bc5.chunk.css",
     "main.js": "/comic-viewer/static/js/main.ca67932a.chunk.js",
     "main.js.map": "/comic-viewer/static/js/main.ca67932a.chunk.js.map",
     "runtime-main.js": "/comic-viewer/static/js/runtime-main.62b1e4f8.js",
@@ -10,13 +10,13 @@
     "static/js/3.fb90eb71.chunk.js": "/comic-viewer/static/js/3.fb90eb71.chunk.js",
     "static/js/3.fb90eb71.chunk.js.map": "/comic-viewer/static/js/3.fb90eb71.chunk.js.map",
     "index.html": "/comic-viewer/index.html",
-    "static/css/main.8e9b866a.chunk.css.map": "/comic-viewer/static/css/main.8e9b866a.chunk.css.map",
+    "static/css/main.545d5bc5.chunk.css.map": "/comic-viewer/static/css/main.545d5bc5.chunk.css.map",
     "static/js/2.8f68eee6.chunk.js.LICENSE.txt": "/comic-viewer/static/js/2.8f68eee6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.62b1e4f8.js",
     "static/js/2.8f68eee6.chunk.js",
-    "static/css/main.8e9b866a.chunk.css",
+    "static/css/main.545d5bc5.chunk.css",
     "static/js/main.ca67932a.chunk.js"
   ]
 }
