@@ -43,13 +43,13 @@ a {
 
 @media only screen and (orientation: landscape) {
   body {
-    background-color: lightblue;
+    background-color: darkgrey;
   }
 }
 
 @media only screen and (orientation: portrait) {
   body {
-    background-color: grey;
+    background-color: darkgrey;
   }
   img {
     width: 100%;
