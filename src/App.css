@@ -45,6 +45,10 @@ a {
   body {
     background-color: darkgrey;
   }
+
+  img {
+    width: 100%;
+  }
 }
 
 @media only screen and (orientation: portrait) {
