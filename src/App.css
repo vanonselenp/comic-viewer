@@ -41,7 +41,7 @@ a {
   width: 100%;
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (orientation: landscape) and (max-width: 800px) {
   body {
     background-color: darkgrey;
   }
