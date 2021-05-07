@@ -5,8 +5,8 @@ const date = "20021104";
 const corsProxy = "https://warm-waters-42495.herokuapp.com/";
 const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}`;
 
-const server = "http://localhost:3000";
-// const server = "https://vanonselenp.github.io";
+// const server = "http://localhost:3000";
+const server = "https://vanonselenp.github.io";
 
 const generateImage = (next, srcs) => {
   return (
