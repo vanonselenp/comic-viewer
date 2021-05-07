@@ -5,8 +5,8 @@ const date = "20021104";
 const corsProxy = "https://warm-waters-42495.herokuapp.com/";
 const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}`;
 
-// const server = "http://localhost:3000";
-const server = "https://vanonselenp.github.io";
+const server = "http://localhost:3000";
+// const server = "https://vanonselenp.github.io";
 
 const generateImage = (next, srcs) => {
   return (
@@ -19,9 +19,7 @@ const generateImage = (next, srcs) => {
 }
 
 function App() {
-  // const [image, setImage] = useState("");
   const [next, setNext] = useState("");
-  // const [path, setPath] = useState("");
   const [currentImages, setCurrentImages] = useState([]);
 
   useEffect(() => {
@@ -42,14 +40,15 @@ function App() {
         Array
           .from(htmldoc.links)
           .filter(m => m.href.startsWith('http://www.girlgeniusonline.com/comic.php?date='))
-          .forEach(m => s.add(m.href));
+          .map(m => m.href.split("=")[1])
+          .forEach(m => s.add(m))
 
-        let n = [...s][0];
-        if (s.size > 2)
-          n = [...s][2]
+        s.add(localDate);
 
-        const nextComic = n.split("=");
-        setNext(nextComic[nextComic.length - 1]);
+        const sorted = [...s].sort();
+
+        const nextcomic = sorted[sorted.findIndex(m => m === localDate) + 1];
+        setNext(nextcomic);
 
         const images = Array.from(htmldoc.images)
           .map(m => m.src)
