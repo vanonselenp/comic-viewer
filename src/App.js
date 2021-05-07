@@ -31,8 +31,6 @@ function App() {
       localDate = currentDate[currentDate.length - 1];
     }
     
-    // setPath(localDate)
-    
     const url = `${corsProxy}${ggurl(localDate)}`;
     fetch(url)
       .then(response => response.text())
@@ -46,9 +44,11 @@ function App() {
           .filter(m => m.href.startsWith('http://www.girlgeniusonline.com/comic.php?date='))
           .forEach(m => s.add(m.href));
 
-        const first = Array.from(s.values())[s.size - 2];
+        let n = [...s][0];
+        if (s.size > 2)
+          n = [...s][2]
 
-        const nextComic = first.split("=");
+        const nextComic = n.split("=");
         setNext(nextComic[nextComic.length - 1]);
 
         const images = Array.from(htmldoc.images)
