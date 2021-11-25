@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
 
-const date = "20021104";
 const corsProxy = "https://warm-waters-42495.herokuapp.com/";
 
 const server = "http://localhost:3000";
@@ -18,6 +17,8 @@ const generateImage = (next, srcs, comic) => {
 }
 
 class GirlGenius {
+  startPage = '20021104';
+
   getNextPage = (htmldoc, localPage) => {
     const s = new Set();
     Array
@@ -47,17 +48,41 @@ class GirlGenius {
 }
 
 class Empowered {
-  getNextPage = (htmldoc, localPage) => {
+  startPage = 'volume-1-page-1';
 
+  getNextPage = (htmldoc, localPage) => {
+    const s = new Set();
+    Array
+      .from(htmldoc.links)
+      .filter(m => m.className === 'cc-next')
+      .map(m => {
+        const data = m.href.split('/');
+        return data[data.length - 1]
+      })
+      .forEach(m => s.add(m))
+
+    const sorted = [...s].sort();
+
+    const nextcomic = sorted[0];
+    console.log(nextcomic);
+    return nextcomic;
   }
 
   getCurrentImages = (htmldoc) => {
-
+    const images = Array.from(htmldoc.images)
+          .map(m => m.src)
+          .filter(m => m.startsWith("https://www.empoweredcomic.com/comic"));
+    return images
   }
   
   getPageUrl = (localPage) => {
-    return `${corsProxy}${this.ggurl(localPage)}`
+    return `${corsProxy}https://www.empoweredcomic.com/comic/${localPage}`
   }
+}
+
+const comicMap = {
+  gg: new GirlGenius(),
+  emp: new Empowered()
 }
 
 function App() {
@@ -67,30 +92,37 @@ function App() {
 
 
   useEffect(() => {
-    let localPage = date;
+    let localPage;
+    let currentComic;
+
     if(window.location.href.includes("?")) {
       const parameters = window.location.href.split('?')[1].split('&');
-      
+     
+      const comicSelection = parameters.find(m => m.startsWith('comic'));
+      if(comicSelection) {
+        const selection = comicSelection.split('=')[1];
+        setComic(selection)
+        currentComic = comicMap[selection];
+      }
+
       const page = parameters.find(m => m.startsWith('page'));
       if(page) {
         localPage = page.split('=')[1];
+      } else {
+        localPage = currentComic.startPage;
       }
 
-      const comicSelection = parameters.find(m => m.startsWith('comic'));
-      if(comicSelection) {
-        setComic(comicSelection.split('=')[1])
-      }
+    } else {
+      currentComic = comicMap['gg'];
+      localPage = currentComic.startPage;
     }
-    const currentComic = new GirlGenius();
     
     const url = currentComic.getPageUrl(localPage);
-
     fetch(url)
       .then(response => response.text())
       .then(data => { 
         const parser = new DOMParser();
         const htmldoc = parser.parseFromString(data, "text/html");
-
 
         setNext(currentComic.getNextPage(htmldoc, localPage));
         setCurrentImages(currentComic.getCurrentImages(htmldoc));
