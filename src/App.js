@@ -18,8 +18,6 @@ const generateImage = (next, srcs, comic) => {
 }
 
 class GirlGenius {
-  ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}`;
-
   getNextPage = (htmldoc, localPage) => {
     const s = new Set();
     Array
@@ -44,8 +42,22 @@ class GirlGenius {
   }
 
   getPageUrl = (localPage) => {
-    return `${corsProxy}${this.ggurl(localPage)}`
+    return `${corsProxy}https://www.girlgeniusonline.com/comic.php?date=${localPage}`;
   };
+}
+
+class Empowered {
+  getNextPage = (htmldoc, localPage) => {
+
+  }
+
+  getCurrentImages = (htmldoc) => {
+
+  }
+  
+  getPageUrl = (localPage) => {
+    return `${corsProxy}${this.ggurl(localPage)}`
+  }
 }
 
 function App() {
