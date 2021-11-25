@@ -10,6 +10,13 @@ Odds are I will forget this:
 
 The aim here was to be a small app deployed and running completely in browser and online. 
 
+### Main page
+
+to deploy run:
+```
+npm run deploy
+```
+
 ### cors-anywhere 
 
 https://github.com/Rob--W/cors-anywhere
