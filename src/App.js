@@ -8,9 +8,9 @@ const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}
 const server = "http://localhost:3000";
 // const server = "https://vanonselenp.github.io";
 
-const generateImage = (next, srcs) => {
+const generateImage = (next, srcs, comic) => {
   return (
-    <a href={`${server}/comic-viewer?page=${next}`}>
+    <a href={`${server}/comic-viewer?page=${next}&comic=${comic}`}>
       {srcs.map(src => (<img className="fit-picture"
             src={src}
             alt="Grapefruit slice atop a pile of other slices"/>))}
@@ -18,16 +18,30 @@ const generateImage = (next, srcs) => {
   );
 }
 
+class GirlGenius {
+
+
+}
+
 function App() {
   const [next, setNext] = useState("");
   const [currentImages, setCurrentImages] = useState([]);
+  const [comic, setComic] = useState('gg');
 
   useEffect(() => {
     let localDate = date;
     if(window.location.href.includes("?")) {
       const parameters = window.location.href.split('?')[1].split('&');
-      const page = parameters.find(m => m.startsWith('page')).split('=');
-      localDate = page[1];
+      
+      const page = parameters.find(m => m.startsWith('page'));
+      if(page) {
+        localDate = page.split('=')[1];
+      }
+
+      const comicSelection = parameters.find(m => m.startsWith('comic'));
+      if(comicSelection) {
+        setComic(comicSelection.split('=')[1])
+      }
     }
     
     const url = `${corsProxy}${ggurl(localDate)}`;
@@ -64,7 +78,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          {generateImage(next, currentImages)}
+          {generateImage(next, currentImages, comic)}
         </header>
       </div>
     );
