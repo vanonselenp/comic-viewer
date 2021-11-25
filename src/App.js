@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 
 const corsProxy = "https://warm-waters-42495.herokuapp.com/";
 
-const server = "http://localhost:3000";
-// const server = "https://vanonselenp.github.io";
+// const server = "http://localhost:3000";
+const server = "https://vanonselenp.github.io";
 
 const generateImage = (next, srcs, comic) => {
   return (
