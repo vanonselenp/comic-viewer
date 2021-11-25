@@ -5,12 +5,12 @@ const date = "20021104";
 const corsProxy = "https://warm-waters-42495.herokuapp.com/";
 const ggurl = (date) => `https://www.girlgeniusonline.com/comic.php?date=${date}`;
 
-// const server = "http://localhost:3000";
-const server = "https://vanonselenp.github.io";
+const server = "http://localhost:3000";
+// const server = "https://vanonselenp.github.io";
 
 const generateImage = (next, srcs) => {
   return (
-    <a href={`${server}/comic-viewer?${next}`}>
+    <a href={`${server}/comic-viewer?page=${next}`}>
       {srcs.map(src => (<img className="fit-picture"
             src={src}
             alt="Grapefruit slice atop a pile of other slices"/>))}
@@ -25,8 +25,9 @@ function App() {
   useEffect(() => {
     let localDate = date;
     if(window.location.href.includes("?")) {
-      const currentDate = window.location.href.split('?');
-      localDate = currentDate[currentDate.length - 1];
+      const parameters = window.location.href.split('?')[1].split('&');
+      const page = parameters.find(m => m.startsWith('page')).split('=');
+      localDate = page[1];
     }
     
     const url = `${corsProxy}${ggurl(localDate)}`;
