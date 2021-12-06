@@ -9,7 +9,7 @@ const server = "https://vanonselenp.github.io";
 const generateImage = (next, srcs, comic) => {
   return (
     <>
-      <h3>{next}</h3>
+      <h3>{comic}</h3>
       <a href={`${server}/comic-viewer?page=${next}&comic=${comic}`}>
         {srcs.map(src => (<img className="fit-picture"
               src={src}
